@@ -24,7 +24,7 @@ In order to install the plugin you need to first copy the
 Artifactory should pick up the plugin, but it's always safer to restart or to
 reload the plugins using
 
-  curl -X POST http://localhost:8081/artifactory/api/plugins/reload -u<artifactory-user>:<artifactory-password>
+    curl -X POST http://localhost:8081/artifactory/api/plugins/reload -u<artifactory-user>:<artifactory-password>
 
 You will also need to add the following to your apache2 configuration:
 
