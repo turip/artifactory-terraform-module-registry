@@ -15,6 +15,12 @@ plugin as:
 Also it is mandatory to have a http server in front of your artifactory instance
 due to artifactory plugins being quite limited.
 
+Limitations:
+- Only tested for local repositories
+- Might work for virtual repositories over local repositores
+- Will not work for remote repositories
+- You must use API keys using Basic authentication
+
 # Installing
 
 In order to install the plugin you need to first copy the
