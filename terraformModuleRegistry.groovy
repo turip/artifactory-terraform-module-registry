@@ -68,9 +68,7 @@ def calculateBaseUrl(request) {
 		// Note: this code path was never tested, as you can just upload your stuff to registry.terraform.io
 		anonymous = true
 	} else {
-		log.info("Auth hreader= " + auth_header)
 		def (kind, secret) = auth_header.split(' ')
-		log.info("Auth hreader= " + kind + "/" + secret)
 		user_secret = new String(Base64.getDecoder().decode(secret), StandardCharsets.UTF_8)
 	}
 	if (override_base_url == null) {
