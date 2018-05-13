@@ -23,7 +23,7 @@ download {
 
 	if (command == null) {
 		log.warn("No command name is set in the request")
-		message = "no command set" +  groovy.json.JsonOutput.toJson(request.getHeaders())
+		message = "no command set"
 		status = 400
 	} else if (command == "versions") {
 		if ((module == null) || (provider == null)) {
