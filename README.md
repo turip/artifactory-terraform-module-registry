@@ -92,6 +92,16 @@ In order to have authentication working you also need to create a new
            token = "<base64 of your username:api_token>"
     }
 
+You can generate the base64 of you password using:
+
+    echo -n admin:mysecretpassword | openssl base64
+
+Then your configuration would look like this:
+
+    credentials "artifactory.example.org" {
+           token = "YWRtaW46bXlzZWNyZXRwYXNzd29yZA=="
+    }
+
 The hostname is the hostname without protocol name (e.g.
 artifactory.example.org), the username is your artifactory user name and the
 api_token is the API Token obtained on the web interface.
