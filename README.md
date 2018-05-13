@@ -1,7 +1,7 @@
 # artifactory-terraform-module-registry
 Artifactory *PRO* plugin for hosting private terraform module registries. 
 
-You can install and use this source to have a private terraform module regsitry
+You can install and use this source to have a private terraform module regisitry
 based on artifactory. Please note that whenever Artifactory would officially
 support terraform module registries, that solution will be superior to this one,
 so please use that.
@@ -45,13 +45,13 @@ You will also need to add the following to your apache2 configuration:
     # Change Bearer tokens into Basic auth for terraform access
     RequestHeader edit Authorization ^Bearer Basic env=TF_USE_BASIC_AUTH
 
-Also you need to serve the .well-known/terraform.json file from your server
+Also you need to serve the ```.well-known/terraform.json``` file from your server
 using the following contents:
 
     {"modules.v1":"/terraform-registry/v1/modules/"}
 
-The easest way on an ubuntu server is to just create the file
-```/var/www/html/.well-known/terraform.json file with these contents```.
+The eaiest way on an ubuntu server is to just create the file
+```/var/www/html/.well-known/terraform.json``` file with these contents.
 
 # Using the plugin
 
@@ -72,10 +72,10 @@ properties set:
 
 After this you can reference the module from terraform using such references:
 
-   module "whatever" {
+    module "whatever" {
         source = "<your-url>/<your-local-repo>/data/aws"
         version = ">= 0.1"
-   }
+    }
 
 Where data is the name of your module and aws is the provider.
 
@@ -160,3 +160,26 @@ The registry must return an empty content and the header of X-Terraform-Get
 containing the URL for the binaries. The module parses the authentication header
 in your request and passes back that as part of this variable, so that the
 whole download process is authenticated.
+
+# FAQ
+
+## Why this apache madness?
+
+The main reason is that the artifactory plugin api is limited, and I need to
+"emulate" a REST API on top.
+
+Also please see the part about the Basic/Bearer authentication issue.
+
+The conclusion is that it will not get better until JFrog properly includes this
+into their Artifactory product.
+
+## Can I use this using Artifactoy OSS?
+
+No. If you don't want to pay for neither Artifactory PRO or Terraform
+Enterprise, you should just create your own implementation and opensource it.
+
+## Why using Artifactory PRO instead of a standalone solution?
+
+I could have, but we have a properly functioning Artifactory at prezi, that has
+authentication and SOC2 compliance sorted, so I would prefer to not to have
+those reimplemented.
