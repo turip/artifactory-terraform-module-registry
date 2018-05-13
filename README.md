@@ -1,4 +1,5 @@
-# artifactory-terraform-module-registry
+# Terraform private module registries using Artifactory PRO
+
 Artifactory *PRO* plugin for hosting private terraform module registries. 
 
 You can install and use this source to have a private terraform module regisitry
